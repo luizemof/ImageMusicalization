@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectView>ProjectFiles</ProjectView>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartArguments>Imagem="C:\Users\Luiz Eduardo\Dropbox\UPE\TCC\Codes\Images\Abstract-Wallpaper-Pics-K7N.jpg" Centros="31%3b20 27%3b75 75%3b42 87%3b89 137%3b38 137%3b82 188%3b55" LogPath="C:\Users\Luiz Eduardo\Desktop\Musicalization" KMeansLog="KMeansExecution.log" KMeansStateLog="KMeansStateExecution.log" SequenceLog="SequenceLog.log"</StartArguments>
+  </PropertyGroup>
+</Project>
