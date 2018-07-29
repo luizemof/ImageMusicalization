@@ -77,7 +77,7 @@ namespace Generation
 					SSlog.WriteLog(message);
 				});
 
-			return stMachine.Run();
+			return stateSequence;
 		}
 
 		private void Log_Notify(object sender, LogArgs e)
