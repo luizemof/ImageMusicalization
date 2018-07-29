@@ -213,13 +213,13 @@
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Procurar";
             this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // bwExecute
             // 
             this.bwExecute.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwExecute_DoWork);
-            this.bwExecute.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwExecute_ProgressChanged);
-            this.bwExecute.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwExecute_RunWorkerCompleted);
+            this.bwExecute.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BwExecute_ProgressChanged);
+            this.bwExecute.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BwExecute_RunWorkerCompleted);
             // 
             // tblMain
             // 

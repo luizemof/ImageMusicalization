@@ -1,149 +1,144 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GUI.KMeans
 {
-    public partial class UKMeans : UserControl
-    {
-        public UKMeans()
-        {
-            InitializeComponent();
-            _CentersCount = 7;
-        }
+	public partial class UKMeans : UserControl
+	{
+		public UKMeans()
+		{
+			InitializeComponent();
+			_CentersCount = 7;
+		}
 
-        private int _CentersCount;
-        private Dictionary<int, NumericUpDown> _DicCentersX = new Dictionary<int,NumericUpDown>();
-        private Dictionary<int, NumericUpDown> _DicCentersY = new Dictionary<int,NumericUpDown>();
+		private int _CentersCount;
+		private Dictionary<int, NumericUpDown> _DicCentersX = new Dictionary<int, NumericUpDown>();
+		private Dictionary<int, NumericUpDown> _DicCentersY = new Dictionary<int, NumericUpDown>();
 
-        /// <summary>
-        /// Método que inicializa a classe, criando os controles necessários.
-        /// </summary>
-        public void Initialize()
-        {
-            TableLayoutPanel tblPanel;
-            List<Control> controls;
-            GroupBox groupBox;
-            for (int i = 0; i < _CentersCount; i++)
-            {
-                tblPanel = _CreateTableLayout(i);
-                controls = _CreateCenterControl(i);
-               
-                for (int j = 0; j < controls.Count; j++)
-                    tblPanel.Controls.Add(controls[j], j, 0);
+		/// <summary>
+		/// Método que inicializa a classe, criando os controles necessários.
+		/// </summary>
+		public void Initialize()
+		{
+			TableLayoutPanel tblPanel;
+			List<Control> controls;
+			GroupBox groupBox;
+			for (int i = 0; i < _CentersCount; i++)
+			{
+				tblPanel = _CreateTableLayout(i);
+				controls = _CreateCenterControl(i);
 
-                groupBox = _CreateGroupBox(string.Format("LabelCenter{0}", i), string.Format("Centro {0}", i));
-                groupBox.Controls.Add(tblPanel);
+				for (int j = 0; j < controls.Count; j++)
+					tblPanel.Controls.Add(controls[j], j, 0);
 
-                tableLayout.Controls.Add(groupBox, 1, i);
-            }
-        }
+				groupBox = _CreateGroupBox(string.Format("LabelCenter{0}", i), string.Format("Centro {0}", i));
+				groupBox.Controls.Add(tblPanel);
 
-        private GroupBox _CreateGroupBox(string name, string text)
-        {
-            GroupBox groupBox = new GroupBox();
-            groupBox.AutoSize = true;
-            groupBox.Name = name;
-            groupBox.Text = text;
-            groupBox.Dock = DockStyle.Fill;
+				tableLayout.Controls.Add(groupBox, 1, i);
+			}
+		}
 
-            return groupBox;
-        }
+		private GroupBox _CreateGroupBox(string name, string text)
+		{
+			GroupBox groupBox = new GroupBox();
+			groupBox.AutoSize = true;
+			groupBox.Name = name;
+			groupBox.Text = text;
+			groupBox.Dock = DockStyle.Fill;
 
-        private List<Control> _CreateCenterControl(int index)
-        {
-            List<Control> controls = new List<Control>();
-            Label label;
-            NumericUpDown numeric = new NumericUpDown();
+			return groupBox;
+		}
 
-            // Coordenada X
-            label = _CreateLabel(string.Format("LabelCenterX{0}", index), "X");
-            label.Padding = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            numeric = _CreateNumeric(string.Format("NumericX{0}", index));
-            controls.Add(label);
-            controls.Add(numeric);
+		private List<Control> _CreateCenterControl(int index)
+		{
+			List<Control> controls = new List<Control>();
+			Label label;
+			NumericUpDown numeric = new NumericUpDown();
 
-            if (!_DicCentersX.ContainsKey(index))
-                _DicCentersX.Add(index, numeric);
-            else
-                _DicCentersX[index] = numeric;
+			// Coordenada X
+			label = _CreateLabel(string.Format("LabelCenterX{0}", index), "X");
+			label.Padding = new System.Windows.Forms.Padding(3, 5, 3, 3);
+			numeric = _CreateNumeric(string.Format("NumericX{0}", index));
+			controls.Add(label);
+			controls.Add(numeric);
 
-            // Coordenada Y
-            label = _CreateLabel(string.Format("LabelCenterY{0}", index), "Y");
-            label.Padding = new System.Windows.Forms.Padding(3, 5, 3, 3);
-            numeric = _CreateNumeric(string.Format("NumericY{0}", index));
-            controls.Add(label);
-            controls.Add(numeric);
+			if (!_DicCentersX.ContainsKey(index))
+				_DicCentersX.Add(index, numeric);
+			else
+				_DicCentersX[index] = numeric;
 
-            if (!_DicCentersY.ContainsKey(index))
-                _DicCentersY.Add(index, numeric);
-            else
-                _DicCentersY[index] = numeric;
+			// Coordenada Y
+			label = _CreateLabel(string.Format("LabelCenterY{0}", index), "Y");
+			label.Padding = new System.Windows.Forms.Padding(3, 5, 3, 3);
+			numeric = _CreateNumeric(string.Format("NumericY{0}", index));
+			controls.Add(label);
+			controls.Add(numeric);
 
-            return controls;
-        }
+			if (!_DicCentersY.ContainsKey(index))
+				_DicCentersY.Add(index, numeric);
+			else
+				_DicCentersY[index] = numeric;
 
-        private NumericUpDown _CreateNumeric(string name)
-        {
-            NumericUpDown numeric = new NumericUpDown();
-            numeric.AutoSize = true;
-            numeric.Minimum = 0;
-            numeric.Dock = DockStyle.Fill;
-            numeric.Name = name;
-            numeric.Maximum = 999999M;
+			return controls;
+		}
 
-            return numeric;
-        }
+		private NumericUpDown _CreateNumeric(string name)
+		{
+			NumericUpDown numeric = new NumericUpDown();
+			numeric.AutoSize = true;
+			numeric.Minimum = 0;
+			numeric.Dock = DockStyle.Fill;
+			numeric.Name = name;
+			numeric.Maximum = 999999M;
 
-        private TableLayoutPanel _CreateTableLayout(int index)
-        {
-            TableLayoutPanel tblPanel = new TableLayoutPanel();
-            tblPanel.ColumnCount = 4;
-            tblPanel.RowCount = 1;
-            tblPanel.AutoSize = true;
-            tblPanel.Dock = DockStyle.Fill;
-            tblPanel.Name = string.Format("tableLayoutPanel{0}", index);
+			return numeric;
+		}
 
-            return tblPanel;
-        }
+		private TableLayoutPanel _CreateTableLayout(int index)
+		{
+			TableLayoutPanel tblPanel = new TableLayoutPanel();
+			tblPanel.ColumnCount = 4;
+			tblPanel.RowCount = 1;
+			tblPanel.AutoSize = true;
+			tblPanel.Dock = DockStyle.Fill;
+			tblPanel.Name = string.Format("tableLayoutPanel{0}", index);
 
-        public Label _CreateLabel(string name, string text)
-        {
-            Label label = new Label();
-            label.Name = name;
-            label.Text = text;
-            label.Dock = DockStyle.Fill;
-            label.AutoSize = true;
+			return tblPanel;
+		}
 
-            return label;
-        }
+		public Label _CreateLabel(string name, string text)
+		{
+			Label label = new Label();
+			label.Name = name;
+			label.Text = text;
+			label.Dock = DockStyle.Fill;
+			label.AutoSize = true;
 
-        public List<Point> GetCenters()
-        {
-            List<Point> centers = new List<Point>();
-            
-            for (int i = 0; i < _CentersCount; i++)
-            {
-                if (!_DicCentersX.ContainsKey(i) || !_DicCentersY.ContainsKey(i))
-                    throw new ArgumentException();
+			return label;
+		}
 
-                centers.Add
-                (
-                    new Point()
-                    {
-                        X = (int)_DicCentersX[i].Value,
-                        Y = (int)_DicCentersY[i].Value
-                    }
-                );
-            }
+		public List<Point> GetCenters()
+		{
+			List<Point> centers = new List<Point>();
 
-            return centers;
-        }
-    }
+			for (int i = 0; i < _CentersCount; i++)
+			{
+				if (!_DicCentersX.ContainsKey(i) || !_DicCentersY.ContainsKey(i))
+					throw new ArgumentException();
+
+				centers.Add
+				(
+					new Point()
+					{
+						X = (int)_DicCentersX[i].Value,
+						Y = (int)_DicCentersY[i].Value
+					}
+				);
+			}
+
+			return centers;
+		}
+	}
 }

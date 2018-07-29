@@ -33,17 +33,17 @@ namespace Musicalization
 
 		public static void Generate(List<IState> sequence, string output)
 		{
-			Converter<IState, string> converter = (a) =>
-				{
-					if (a.ModelType == EModelType.KMeans)
-						return (((KMeansState)a).Element.SoundNote);
-					else if (a.ModelType == EModelType.SURF)
-						return (((SURFState)a).Element.SoundNote);
-					else
-						return string.Empty;
-				};
+			string converter(IState a)
+			{
+				if (a.ModelType == EModelType.KMeans)
+					return (((KMeansState)a).Element.SoundNote);
+				else if (a.ModelType == EModelType.SURF)
+					return (((SURFState)a).Element.SoundNote);
+				else
+					return string.Empty;
+			}
 
-			Generate(sequence.ConvertAll<string>(converter), output);
+			Generate(sequence.ConvertAll(converter), output);
 		}
 
 		/// <summary>
