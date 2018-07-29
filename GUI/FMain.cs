@@ -22,9 +22,9 @@ namespace GUI
 
 			ukMeans.Initialize();
 
-			this.comboBoxModel.SelectedIndexChanged += ComboBoxModel_SelectedIndexChanged;
-			this.pictureBox.MouseDown += pictureBox_MouseDown;
-			this.pictureBox.MouseMove += PictureBox_MouseMove;
+			comboBoxModel.SelectedIndexChanged += ComboBoxModel_SelectedIndexChanged;
+			pictureBox.MouseDown += PictureBox_MouseDown;
+			pictureBox.MouseMove += PictureBox_MouseMove;
 			General.Instance.NotificationRequested += Instance_NotificationRequested;
 
 			bwExecute.WorkerReportsProgress = true;
@@ -70,7 +70,7 @@ namespace GUI
 			}
 		}
 
-		private void pictureBox_MouseDown(object sender, MouseEventArgs e)
+		private void PictureBox_MouseDown(object sender, MouseEventArgs e)
 		{
 			if (e.Button == MouseButtons.Left)
 				_StartLocation = e.Location;
@@ -116,7 +116,7 @@ namespace GUI
 			}
 		}
 
-		private void btnExecute_Click(object sender, EventArgs e)
+		private void BtnExecute_Click(object sender, EventArgs e)
 		{
 			_ClearLog();
 			if (!_Executing)

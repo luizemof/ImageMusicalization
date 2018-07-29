@@ -83,7 +83,7 @@
             this.btnExecute.TabIndex = 1;
             this.btnExecute.Text = "Executar";
             this.btnExecute.UseVisualStyleBackColor = true;
-            this.btnExecute.Click += new System.EventHandler(this.btnExecute_Click);
+            this.btnExecute.Click += new System.EventHandler(this.BtnExecute_Click);
             // 
             // panModel
             // 
