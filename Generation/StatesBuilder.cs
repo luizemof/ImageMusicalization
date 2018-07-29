@@ -68,9 +68,7 @@ namespace Generation
 		private List<LinkedState> CreateKMeansLinkedStates(IState s, List<IState> states)
 		{
 			List<LinkedState> returnValue = new List<LinkedState>();
-
-			states.ForEach(ks => returnValue.Add(new LinkedState(ks, s.Guid)));
-
+			states?.ForEach(ks => returnValue.Add(new LinkedState(ks, s.Guid)));
 			return returnValue;
 		}
 	}

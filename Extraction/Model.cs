@@ -5,16 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Extraction
 {
 	/// <summary>
 	/// Classe abstrata que representa o Modelo que será executado para a extração de característica da imagem
 	/// </summary>
-	public abstract class Model
+	public abstract class Model : IDisposable
 	{
 		public Model(string imageFile, Log log, bool parallel)
 		{
@@ -25,6 +22,11 @@ namespace Extraction
 			_Log = log;
 			_MyImage = new Bitmap(imageFile);
 			_ExecuteParallel = parallel;
+		}
+
+		~Model()
+		{
+			Dispose(false);
 		}
 
 		public abstract EModelType Type { get; }
@@ -82,5 +84,30 @@ namespace Extraction
 				lock (_Log)
 					_Log.WriteLog(message, level, sameLine);
 		}
+
+		#region IDisposable Support
+		private bool disposedValue = false; // To detect redundant calls
+
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!disposedValue)
+			{
+				if (disposing)
+				{
+					if(_MyImage != null)
+					{
+						_MyImage.Dispose();
+						_MyImage = null;
+					}
+				}
+				disposedValue = true;
+			}
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+		}
+		#endregion
 	}
 }

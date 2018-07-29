@@ -36,13 +36,29 @@ namespace Musicalization
 				_Finished = true;
 		}
 
-		public void Dispose()
+		#region IDisposable Support
+		private bool disposedValue = false; // To detect redundant calls
+
+		protected virtual void Dispose(bool disposing)
 		{
-			if (_Player != null)
+			if (!disposedValue)
 			{
-				_Player.close();
-				_Player = null;
+				if (disposing)
+				{
+					if (_Player != null)
+					{
+						_Player.close();
+						_Player = null;
+					}
+				}
+				disposedValue = true;
 			}
 		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+		}
+		#endregion
 	}
 }

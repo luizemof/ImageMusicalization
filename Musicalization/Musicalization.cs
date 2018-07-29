@@ -76,7 +76,7 @@ namespace Musicalization
 			}
 			catch (Exception e)
 			{
-				throw e;
+				throw new Exception(e.Message, e);
 			}
 			finally
 			{

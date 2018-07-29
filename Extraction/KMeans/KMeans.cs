@@ -95,7 +95,7 @@ namespace Extraction.KMeans
 			catch (Exception e)
 			{
 				WriteLog(e.StackTrace);
-				throw e;
+				throw new Exception(e.Message, e);
 			}
 		}
 
@@ -158,13 +158,13 @@ namespace Extraction.KMeans
 		{
 			bool found = true;
 
-			foreach (List<Point> res in _AllResults)
+			_AllResults?.ForEach(res =>
 			{
 				found = true;
 				res.ForEach(coord => found &= newCenters.Exists(c => c == coord));
 				if (found)
-					break;
-			}
+					return;
+			});
 
 			return found;
 		}
@@ -174,13 +174,12 @@ namespace Extraction.KMeans
 			double distance;
 			double closestDistante;
 			Point coord;
-			Point closeCenter = Common.General.Utils.EmptyPoint;
+			Point closeCenter = Utils.EmptyPoint;
 			Color pixel;
 			Color centerPixel;
 			_Groups.Clear();
 
-			foreach (Point item in _Result)
-				_Groups.Add(item, new List<Point>());
+			_Result?.ForEach(item => _Groups.Add(item, new List<Point>()));
 
 			_Distances.Clear();
 
