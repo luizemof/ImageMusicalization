@@ -31,7 +31,7 @@ namespace Extraction.Tests.KMeans
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(NotImplementedException))]
+		[ExpectedException(typeof(Exception))]
 		public void KMeans_Execute_Empty_Points_Random()
 		{
 			// Arrange
@@ -45,7 +45,7 @@ namespace Extraction.Tests.KMeans
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(ArgumentOutOfRangeException))]
+		[ExpectedException(typeof(Exception))]
 		public void KMeans_Execute_With_Center_Bigger_Than_Image()
 		{
 			// Arrange
