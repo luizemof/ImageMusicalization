@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Common.Generation
 {
-    public interface IState
-    {
-        List<LinkedState> LinkedStates { get; set; }
-        Guid Guid { get; }
-        EModelType ModelType { get; }
-        bool IsDeadState { get; }
-        
-        void CalculateLinkedStatesProbability();
-    }
+	public interface IState
+	{
+		List<LinkedState> LinkedStates { get; set; }
+		Guid Guid { get; }
+		EModelType ModelType { get; }
+		bool IsDeadState { get; }
+
+		void CalculateLinkedStatesProbability();
+	}
 }

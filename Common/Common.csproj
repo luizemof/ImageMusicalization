@@ -41,12 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EModelType.cs" />
-    <Compile Include="Extentions.cs" />
+    <Compile Include="Extension.cs" />
     <Compile Include="Extraction\ENote.cs" />
     <Compile Include="Extraction\IResult.cs" />
     <Compile Include="General\ColorNote.cs" />
     <Compile Include="General\CubeMusicalization.cs" />
     <Compile Include="General\ELogType.cs" />
+    <Compile Include="General\IBuilder.cs" />
     <Compile Include="General\Log.cs" />
     <Compile Include="General\LogArgs.cs" />
     <Compile Include="General\Utils.cs" />

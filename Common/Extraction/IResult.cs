@@ -17,10 +17,11 @@ namespace Common.Extraction
         EModelType ModelType { get; }
         ENote Note { get; }
         string SoundNote { get; }
-        
-        /// <summary>
-        /// Gera a nota
-        /// </summary>
-        void GenerateNote();
+		int NumberOfElements { get; set; }
+
+		/// <summary>
+		/// Gera a nota
+		/// </summary>
+		void GenerateNote();
     }
 }

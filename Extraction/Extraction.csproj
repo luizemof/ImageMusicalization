@@ -78,6 +78,9 @@
     <Content Include="Resources\C.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="cvextern.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Dm.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
