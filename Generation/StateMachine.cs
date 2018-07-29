@@ -25,7 +25,7 @@ namespace Generation
 	/// <summary>
 	/// Classe que representa a máquina de estados
 	/// </summary>
-	public class StateMachine
+	internal class StateMachine
 	{
 		public StateMachine(List<IState> states, int maxInteraction = 30, Log log = null)
 		{
